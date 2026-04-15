@@ -1,0 +1,47 @@
+name: Laravel CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:6
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: mongodb, mbstring, bcmath
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Set permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Run tests
+        env:
+          DB_CONNECTION: mongodb
+          DB_HOST: 127.0.0.1
+          DB_PORT: 27017
+          DB_DATABASE: test
+        run: php artisan test
