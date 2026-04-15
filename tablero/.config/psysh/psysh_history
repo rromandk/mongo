@@ -1,0 +1,100 @@
+App\Models\User::factory()->create([
+    'name' => 'Test User',
+    'email' => 'test@example.com',
+    'password' => bcrypt('password')
+]);
+\App\Models\Role::create(['name' => 'admin']);
+\App\Models\Role::create(['name' => 'user']);
+q
+Cache::store('redis')->put('test', 'ok', 10);
+Cache::store('redis')->get('test');
+q
+Queue::size('email');
+env('AWS_ACCESS_KEY_ID');
+env('AWS_ACCESS_KEY_ID');
+Post::create([
+    'title' => 'test observer',
+    'content' => 'contenido',
+    'user_id' => 1,
+    'institucion_id' => 1
+]);
+Post::create([
+    'title' => 'test',
+    'content' => 'test',
+    'user_id' => 1,
+    'institucion_id' => 1
+]);
+exit
+DB::connection('mongodb')->getMongoClient();
+exit
+app('db')->connection('mongodb')->getDatabaseName();
+$message->getConnectionName();
+use Filament\Facades\Filament;
+$resources = Filament::getResources();
+foreach ($resources as $resource) {
+    echo $resource . "\n";
+}
+use App\Filament\Resources\MessageResource;
+$items = MessageResource::getNavigationItems();
+count($items);  // ¿Es 0 o 1?
+exit
+class_exists('App\Filament\Resources\MessageResource');
+class_exists('App\Filament\Resources\InstitucionResource');
+DB::connection('mongodb')->collection('messages')->get();
+DB::connection('mongodb');
+->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')->getMongoClient();
+DB::connection('mongodb')->collection('messages')->get();
+DB::connection('mongodb')->collection('messages')->get();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('documents')
+    ->get();
+DB::connection('mongodb')
+    ->table('document')
+    ->get();
+DB::connection('mongodb')
+    ->table('documents')
+    ->get();
+Document::all();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('messages')
+    ->get();
+DB::connection('mongodb')
+    ->table('documents')
+    ->get();
+DB::connection('mongodb')
+DB::connection('mongodb')
+->table('documents')
+->get();
+DB::connection('mongodb')
+->table('documents')
+->get();
+DB::connection('mongodb')
+->table('documents')
+->get();
+DB::connection('mongodb')
+->table('documents')
+->get();
+DB::connection('mongodb')
+->table('documents')
+->get();
+

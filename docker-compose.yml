@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        UID: 1000
+      dockerfile: Dockerfile
+    user: "1000:1000"
+    container_name: proyecto_mongo
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.6
+    container_name: proyecto_mongo_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: laravel
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - laravel
+  webserver:
+    image: nginx:alpine
+    container_name: proyecto_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - laravel
+
+  node:
+    image: node:20
+    container_name: proyecto_node
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - laravel
+
+  worker:
+    build:
+      context: .
+      args:
+        UID: 1000
+      dockerfile: Dockerfile
+    user: "1000:1000"
+    container_name: proyecto_worker
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan queue:work --queue=emails --sleep=3 --tries=3
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel
+    depends_on:
+      - app
+# Elasticsearch no bloquea emails
+# Mejor performance
+# Escalable (podés meter más workers después)
+  worker_elastic:
+    build:
+      context: .
+      args:
+        UID: 1000
+      dockerfile: Dockerfile
+    user: "1000:1000"
+    container_name: proyecto_worker_elastic
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan queue:work --queue=elastic --sleep=3 --tries=3
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel
+    depends_on:
+      - app
+#Si tenés un docker network llamado laravel, definilo como externo en ambos compose.yml  
+#“si no hay jobs, sleep espero 3 segundos antes de volver a consultar”    
+#“Si un job falla, reintentarlo hasta 3 veces antes de marcarlo como fallido”
+networks:
+  laravel:
+    external: true
+
+volumes:
+  dbdata:

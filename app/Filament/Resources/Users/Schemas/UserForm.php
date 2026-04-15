@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Filament\Resources\Users\Schemas;
+
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Schemas\Schema;
+
+class UserForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextInput::make('name')
+                    ->required(),
+                TextInput::make('email')
+                    ->label('Email address')
+                    ->email()
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                //DateTimePicker::make('email_verified_at'),
+                TextInput::make('password')
+                    ->password()
+                    ->required()
+                    ->minLength(6)
+                    ->dehydrateStateUsing(fn ($state) => bcrypt($state))
+                    ->dehydrated(fn ($state) => filled($state)),
+                Select::make('role_id')
+                    ->relationship('role', 'name')  // 👈 Esto es clave
+                    ->required()
+                    ->searchable()  // Para buscar roles
+                    ->preload(),    // Carga los roles al inicio
+                ]);
+    }
+}

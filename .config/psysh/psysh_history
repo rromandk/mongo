@@ -1,0 +1,69 @@
+$user = App\Models\User::first();
+user->roles;
+Pelicula::count()
+use App\Models\Pelicula;
+// Ver cuántos registros hay
+Pelicula::count();
+use App\Models\Comment;
+// Ver cuántos registros hay
+Comment::count();
+use App\Models\Comments;
+// Ver cuántos registros hay
+Comment::count();
+use App\Models\Comments;
+// Ver cuántos registros hay
+Comments::count();
+use App\Models\Comments;
+// Ver cuántos registros hay
+Comments::count();
+use App\Models\Comments;
+Comments::count();
+use App\Models;
+Comments::count();
+use App\Models;
+// Ver cuántos registros hay
+Movie::count();
+use App\Models;
+// Ver cuántos registros hay
+Pelicula::count();
+use App\Models;
+// Ver cuántos registros hay
+Peliculas::count();
+use App\Models;
+// Ver cuántos registros hay
+Pelicula::count();
+use App\Models\Pelicula;
+Pelicula::count();
+use App\Models\Pelicula;
+Pelicula::count();
+use App\Models\Pelicula;
+Pelicula::count();
+use App\Models;
+Peliculas::count();
+Peliculas::count();
+use App\Models
+Peliculas::count();
+use App\Models\Peliculas;
+Peliculas::count();
+use App\Models\Comments;
+Comments::count();
+use App\Models\Peliculas;
+Peliculas::count();
+use App\Models\Peliculas;
+$peliculas = Peliculas::all();
+count($peliculas);  // ¿Cuántos registros trae?
+use App\Models\Peliculas;
+$peliculas = Peliculas::all();
+count($peliculas); 
+use App\Models\Peliculas;
+$peliculas = Peliculas::all();
+count($peliculas);  // ¿Cuántos registros trae?
+DB::connection('mongodb')->collection('movies')->count();
+use App\Models\Peliculas;
+DB::connection('mongodb')->collection('movies')->count();
+DB::connection('mongodb')->getMongoDB()->getDatabaseName();
+DB::connection('mongodb')->collection('movies')->count();
+DB::connection('mongodb')->table('movies')->count();
+Peliculas::count();
+[200~<pre>&gt; Peliculas::count();
+\App\Models\Peliculas::count();

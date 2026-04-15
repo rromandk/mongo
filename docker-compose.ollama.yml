@@ -1,0 +1,15 @@
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama_microservice
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    external: true

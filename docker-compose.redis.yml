@@ -1,0 +1,21 @@
+services:
+
+  redis:
+    image: redis:7
+    container_name: proyecto_redis_microservice
+    command: >
+      redis-server 
+      --appendonly yes 
+      --appendfilename appendonly.aof
+      --dir /data
+    volumes:
+      - ./redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    external: true

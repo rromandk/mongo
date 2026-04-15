@@ -1,0 +1,68 @@
+# Directorios de datos de servicios (los que mencionaste)
+redis_data/
+ollama_data/
+localstack_data/
+
+# Directorios de dependencias
+node_modules/
+vendor/
+
+# Directorios de Laravel
+bootstrap/cache/
+storage/
+public/storage
+public/hot
+public/build
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+
+# Archivos de logs y caché
+*.log
+*.sqlite
+*.sqlite-journal
+npm-debug.log
+yarn-error.log
+
+# Archivos de IDE/editor
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+Thumbs.db
+
+# Archivos de composer
+composer.phar
+
+# Archivos generados
+.phpunit.result.cache
+.phpcs-cache
+.cache
+.phan
+
+# Directorios de tests/cache
+.coverage
+.phpunit.cache
+
+# Archivos de configuración local
+phpunit.xml
+.env.backup
+.env.old
+
+# Reportes
+coverage/
+coverage.xml
+*.report
+
+# Paquetes comprimidos
+*.zip
+*.tar.gz
+*.rar
+
+# Archivos temporales
+*.tmp
+*.temp
+._*
+EOF

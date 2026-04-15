@@ -1,0 +1,21 @@
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack_microservice
+    ports:
+      - "4566:4566"   # endpoint principal
+    environment:
+      - SERVICES=s3,sqs,sns
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=us-east-1
+      - LOCALSTACK_AUTH_TOKEN=ls-dOme3623-3678-xEqa-Joko-kaPeNupucc1f
+  
+    volumes:
+      - ./localstack_data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    external: true
