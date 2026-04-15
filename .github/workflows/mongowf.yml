@@ -26,6 +26,15 @@ jobs:
           extensions: mongodb, mbstring, bcmath
           coverage: none
 
+      - name: Install MongoDB extension (version 2.2.0)
+        run: # Instalar la versión específica que necesitas
+          sudo apt-get update
+          sudo apt-get install -y php8.2-dev pkg-config libssl-dev
+          sudo pecl install mongodb-2.2.0
+          echo "extension=mongodb.so" | sudo tee /etc/php/8.2/cli/conf.d/20-mongodb.ini
+          php -m | grep mongodb
+          php -i | grep "mongodb version"
+
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 

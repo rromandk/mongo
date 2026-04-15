@@ -20,9 +20,10 @@ class AuthenticatedSessionController extends Controller
     }
 
     public function isAdmin()
-{
-    return $this->role?->name === 'admin';
-}
+    {
+        $user = Auth::user();
+        return $user->role?->name === 'admin';
+    }
     /**
      * Handle an incoming authentication request.
      */
