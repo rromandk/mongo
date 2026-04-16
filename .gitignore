@@ -25,6 +25,8 @@ public/build
 *.sqlite-journal
 npm-debug.log
 yarn-error.log
+.bash_history
+.composer/
 
 # Archivos de IDE/editor
 .vscode/
